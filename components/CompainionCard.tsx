@@ -12,7 +12,7 @@ interface CompanionCardProps {
 const CompainionCard = ({ id, name, topic, subject, duration, color }:CompanionCardProps) => {
 
   return (
-    <article className="companion-card" style={{ backgroundColor: color }}>
+    <article className="companion-card relative z-10" style={{ backgroundColor: color }}>
         <div className='flex justify-between items-center'>
            <div className="subject-badge">{subject}</div>
             <button className="companion-bookmark">
@@ -27,7 +27,7 @@ const CompainionCard = ({ id, name, topic, subject, duration, color }:CompanionC
         </button>
         </div>
          <h2 className="text-2xl font-bold">{name}</h2>
-         <p className="text-sm">{topic}</p>
+         <p className="text-[18px]">Topic: {topic}</p>
         <div className="flex items-center gap-2">
         <Image
           src="/icons/clock.svg"
