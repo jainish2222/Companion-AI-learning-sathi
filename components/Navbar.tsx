@@ -14,7 +14,8 @@ const Navbar = () => {
                         alt="logo"
                         width={46}
                         height={44}
-                    />
+                    /> 
+                    <b className="hidden sm:inline text-xl">Companion</b>
                 </div>
             </Link>
             <NavItems />

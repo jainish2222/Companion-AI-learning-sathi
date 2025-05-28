@@ -9,11 +9,29 @@ const bricolage = Bricolage_Grotesque({
   variable: "--font-bricolage",
   subsets: ["latin"],
 });
-
 export const metadata: Metadata = {
-  title: "Converso",
-  description: "Real-time AI Teaching Platform",
+  title: "Companion - Real-time AI Teaching Platform",
+  description: "Companion is a cutting-edge real-time AI teaching platform that enhances learning through interactive AI-powered tools and personalized education experiences.",
+  keywords: "AI teaching platform, real-time AI learning, online education, interactive AI tutor, personalized learning, e-learning, AI education software",
+  viewport: "width=device-width, initial-scale=1",
+  robots: "index, follow",
+  openGraph: {
+    title: "Companion - Real-time AI Teaching Platform",
+    description: "Enhance your learning experience with Companion, the interactive AI-powered teaching platform providing personalized education in real-time.",
+    url: "https://yourwebsite.com/companion",
+    siteName: "Companion",
+    type: "website",
+    images: [
+      {
+        url: "https://yourwebsite.com/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Companion AI Teaching Platform",
+      },
+    ],
+  },
 };
+
 
 export default function RootLayout({
   children,
