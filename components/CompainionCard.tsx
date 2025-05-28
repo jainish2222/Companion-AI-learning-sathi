@@ -1,9 +1,10 @@
 "use client";
+
+import { useEffect, useState } from "react";
 import { removeBookmark, getExistBookmark, addBookmark } from "@/lib/actions/companion.actions";
+import { usePathname } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
 
 interface CompanionCardProps {
   id: string;
@@ -22,38 +23,57 @@ const CompanionCard = ({
   subject,
   duration,
   color,
-  bookmarked: initialBookmarked,
+  bookmarked,
 }: CompanionCardProps) => {
   const pathname = usePathname();
-  const [isBookmarked, setIsBookmarked] = useState(initialBookmarked);
+  const [isBook, setIsBook] = useState<boolean>(bookmarked);
+  const [alertText, setAlertText] = useState<string | null>(null);
+  const [alertColor, setAlertColor] = useState<"green" | "red">("green");
 
   useEffect(() => {
     const checkBookmark = async () => {
       const exists = await getExistBookmark(id);
-      setIsBookmarked(exists);
+      setIsBook(exists);
     };
     checkBookmark();
   }, [id]);
 
   const handleBookmark = async () => {
-    if (isBookmarked) {
+    if (isBook) {
       await removeBookmark(id, pathname);
-      setIsBookmarked(false);
-      console.log("remove");
+      setIsBook(false);
+      setAlertText("Bookmark removed!");
+      setAlertColor("red");
     } else {
       await addBookmark(id, pathname);
-      setIsBookmarked(true);
-      console.log("add");
+      setIsBook(true);
+      setAlertText("Bookmark added!");
+      setAlertColor("green");
     }
+
+    // Hide alert after 3 seconds
+    setTimeout(() => setAlertText(null), 3000);
   };
 
   return (
     <article className="companion-card relative z-10" style={{ backgroundColor: color }}>
+      {alertText && (
+        <div
+          className={`fixed top-4 left-1/2 transform -translate-x-1/2 z-50 px-4 py-2 rounded shadow ${
+            alertColor === "green"
+              ? "bg-green-100 text-green-800"
+              : "bg-red-100 text-red-800"
+          }`}
+        >
+          {alertText}
+        </div>
+      )}
+
       <div className="flex justify-between items-center">
         <div className="subject-badge">{subject}</div>
         <button className="companion-bookmark" onClick={handleBookmark}>
           <Image
-            src={isBookmarked ? "/icons/bookmark-filled.svg" : "/icons/bookmark.svg"}
+            src={isBook ? "/icons/bookmark-filled.svg" : "/icons/bookmark.svg"}
             alt="bookmark"
             width={12.5}
             height={15}
@@ -74,9 +94,7 @@ const CompanionCard = ({
       </div>
 
       <Link href={`/companions/${id}`} className="w-full">
-        <button className="btn-primary w-full justify-center">
-          Launch Lesson
-        </button>
+        <button className="btn-primary w-full justify-center">Launch Lesson</button>
       </Link>
     </article>
   );

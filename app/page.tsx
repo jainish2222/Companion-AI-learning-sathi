@@ -25,15 +25,23 @@ const Page = async () => {
             ))}
 
         </section>
-
         <section className="home-section">
+          <div className="hidden lg:block w-2/3">
+            <CompanionsList
+              title="Recently completed sessions"
+              companions={recentSessionsCompanions}
+            />
+          </div>
+          <CTA />
+        </section>
+        {/* <section className="home-section">
             <CompanionsList
                 title="Recently completed sessions"
                 companions={recentSessionsCompanions}
                 classNames="w-2/3 max-lg:w-full"
             />
             <CTA />
-        </section>
+        </section> */}
     </main>
   )
 }

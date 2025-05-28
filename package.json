@@ -10,6 +10,8 @@
   },
   "dependencies": {
     "@clerk/nextjs": "^6.20.0",
+    "@heroui/alert": "^2.2.19",
+    "@heroui/react": "^2.7.8",
     "@hookform/resolvers": "^5.0.1",
     "@jsmastery/utils": "^1.0.2",
     "@opentelemetry/sdk-trace-base": "^2.0.1",
