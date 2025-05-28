@@ -4,7 +4,7 @@ import CompanionCard from "../../components/CompainionCard";
 import SearchInput from "../../components/SearchInput";
 import SubjectFilter from "../../components/SubjectFilter";
 import Link from "next/link";
-
+export const dynamic = 'force-dynamic';
 const CompanionsLibrary = async ({ searchParams }: SearchParams) => {
     const filters = await searchParams;
     const subject = filters.subject ?? '';
