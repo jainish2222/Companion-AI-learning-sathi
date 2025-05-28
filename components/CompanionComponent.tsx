@@ -95,9 +95,9 @@ const CompanionComponent = ({ companionId, subject, topic, name, userName, userI
     }
 
     return (
-        <section className="flex flex-col h-[70vh] relative z-10 mb-8">
+        <section className="flex flex-col h-[70vh]">
             <section className="flex gap-8 max-sm:flex-col">
-                <div className="companion-section">
+                <div className="companion-section bg-white">
                     <div className="companion-avatar" style={{ backgroundColor: getSubjectColor(subject)}}>
                         <div
                             className={
@@ -121,13 +121,13 @@ const CompanionComponent = ({ companionId, subject, topic, name, userName, userI
                 </div>
 
                 <div className="user-section">
-                    <div className="user-avatar">
+                    <div className="user-avatar bg-white">
                         <Image src={userImage} alt={userName} width={130} height={130} className="rounded-lg" />
                         <p className="font-bold text-2xl">
                             {userName}
                         </p>
                     </div>
-                    <button className="btn-mic" onClick={toggleMicrophone} disabled={callStatus !== CallStatus.ACTIVE}>
+                    <button className="btn-mic bg-amber-200" onClick={toggleMicrophone} disabled={callStatus !== CallStatus.ACTIVE}>
                         <Image src={isMuted ? '/icons/mic-off.svg' : '/icons/mic-on.svg'} alt="mic" width={36} height={36} />
                         <p className="max-sm:hidden">
                             {isMuted ? 'Turn on microphone' : 'Turn off microphone'}
@@ -144,7 +144,7 @@ const CompanionComponent = ({ companionId, subject, topic, name, userName, userI
                 </div>
             </section>
 
-            <section className="transcript">
+            <section className="transcript ">
                 <div className="transcript-message no-scrollbar">
                     {messages.map((message, index) => {
                         if(message.role === 'assistant') {
@@ -172,5 +172,3 @@ const CompanionComponent = ({ companionId, subject, topic, name, userName, userI
 }
 
 export default CompanionComponent
-
-//not writen by me, but by the AI
