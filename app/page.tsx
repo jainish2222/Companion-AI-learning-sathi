@@ -15,7 +15,7 @@ const Page = async () => {
     <main>
       <h1>Popular Companions</h1>
 
-        <section className="home-section">
+        <section className="home-section ">
             {companions.map((companion) => (
                 <CompainionCard
                     key={companion.id}
@@ -39,3 +39,4 @@ const Page = async () => {
 }
 
 export default Page
+

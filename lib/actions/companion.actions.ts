@@ -115,9 +115,9 @@ export const newCompanionPermissions = async () => {
 
     if(has({ plan: 'pro' })) {
         return true;
-    } else if(has({ feature: "3_companion_limit" })) {
+    } else if(has({ feature: "3_active_companion" })) {
         limit = 3;
-    } else if(has({ feature: "10_companion_limit" })) {
+    } else if(has({ feature: "10_active_companions" })) {
         limit = 10;
     }
 
@@ -183,4 +183,24 @@ export const getBookmarkedCompanions = async (userId: string) => {
   }
   // We don't need the bookmarks data, so we return only the companions
   return data.map(({ companions }) => companions);
+};
+
+export const getExistBookmark = async (companionId: string): Promise<boolean> => {
+  const { userId } = await auth();
+  if (!userId) return false;
+
+  const supabase = createSupabaseClient();
+
+  const { data, error } = await supabase
+    .from("bookmarks")
+    .select()
+    .eq("companion_id", companionId)
+    .eq("user_id", userId);
+
+  if (error) {
+    console.error("Error checking bookmark:", error.message);
+    return false;
+  }
+
+  return data.length > 0;
 };

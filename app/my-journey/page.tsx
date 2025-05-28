@@ -21,7 +21,7 @@ const Profile = async () => {
 
   const companions = await getUserCompanions(user.id);
   const sessionHistory = await getUserSessions(user.id);
-  // const bookmarkedCompanions = await getBookmarkedCompanions(user.id);
+  const bookmarkedCompanions = await getBookmarkedCompanions(user.id);
 
   return (
     <main className="min-lg:w-3/4 relative z-10">
@@ -93,6 +93,17 @@ const Profile = async () => {
           </AccordionTrigger>
           <AccordionContent>
             <CompanionsList title="My Companions" companions={companions} />
+          </AccordionContent>
+        </AccordionItem>
+        <AccordionItem value="bookmarks">
+          <AccordionTrigger className="text-2xl font-bold">
+            Bookmarked Companions {`(${bookmarkedCompanions.length})`}
+          </AccordionTrigger>
+          <AccordionContent>
+            <CompanionsList
+              companions={bookmarkedCompanions}
+              title="Bookmarked Companions"
+            />
           </AccordionContent>
         </AccordionItem>
       </Accordion>
