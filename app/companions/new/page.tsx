@@ -12,7 +12,7 @@ const NewCompanion = async () => {
     const canCreateCompanion = await newCompanionPermissions();
 
     return (
-        <main className=" items-center justify-center relative z-10 mb-10">
+        <main className=" items-center justify-center mb-10">
             {canCreateCompanion ? (
                 <article className="w-full gap-4 flex flex-col">
                     <h1>Companion Builder</h1>
@@ -20,7 +20,7 @@ const NewCompanion = async () => {
                     <CompanionForm />
                 </article>
                 ) : (
-                    <article className="companion-limit">
+                    <article className="companion-limit relative z-10">
                         <Image src="/images/limit.svg" alt="Companion limit reached" width={360} height={230} />
                         <div className="cta-badge">
                             Upgrade your plan
